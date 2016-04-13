@@ -35,6 +35,20 @@ public class PalindromeChecker extends AppCompatActivity {
 
         //Check whether isPalindrome is true or false and print out a statement accordingly
 
+        String userInput = edtxtUserWord.getText().toString();
+        boolean isPalindrome = checkForPalindrome(userInput,0,false);
+        //checks if the word is a palindrome.
+        if(isPalindrome)
+        {
+            // if yes then the message will be
+            txtvwResult.setText("Word! It's a palindrome!");
+        }
+        else
+        {
+            // if not then the message will be
+            txtvwResult.setText("Your word is not a palindrome.");
+        }
+
     }
 
     /**
@@ -62,7 +76,25 @@ public class PalindromeChecker extends AppCompatActivity {
          * The last statement of your method should be to return result
          *
          */
+        int indexFromEnd = word.length() - (index+1);
 
+        // checks if the first index of the character is equal to the last index of the character
+        if (word.toUpperCase().charAt(index) == word.toUpperCase().charAt(indexFromEnd))
+        {
+           if(indexFromEnd == (index -1) || index == indexFromEnd)
+           {
+               result = true;
+           }
+            else
+           {
+               result = checkForPalindrome(word,index+1,result);
+           }
+        }
+        else
+        {
+            result = false;
+        }
+        //the return type is boolean
         return result;
 
     }
